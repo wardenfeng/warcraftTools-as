@@ -34,6 +34,7 @@
         </excludedEntries>
       </libraryPathEntry>
       <libraryPathEntry kind="3" linkType="2" path="/fengCommon/bin/fengCommon.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="2" path="/mathLib/bin/mathLib.swc" useDefaultLinkType="false"/>
     </libraryPath>
     <sourceAttachmentPath/>
   </compiler>

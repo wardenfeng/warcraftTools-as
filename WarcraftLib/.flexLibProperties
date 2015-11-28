@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
-  <includeClasses/>
+  <includeClasses>
+    <classEntry path="me.feng3d.parsers.mdl.Geoset"/>
+    <classEntry path="me.feng3d.parsers.mdl.AnimAlpha"/>
+    <classEntry path="me.feng3d.parsers.mdl.Interval"/>
+    <classEntry path="me.feng3d.parsers.mdl.Layer"/>
+    <classEntry path="me.feng3d.parsers.mdl.Material"/>
+    <classEntry path="me.feng3d.parsers.mdl.AnimInfo1"/>
+    <classEntry path="me.feng3d.parsers.mdl.Globalsequences"/>
+    <classEntry path="me.feng3d.parsers.mdl.Rotation"/>
+    <classEntry path="me.feng3d.parsers.mdl.Model"/>
+    <classEntry path="me.feng3d.parsers.mdl.AnimInfo"/>
+    <classEntry path="me.feng3d.parsers.mdl.Scaling"/>
+    <classEntry path="me.feng3d.parsers.mdl.BoneScaling"/>
+    <classEntry path="me.feng3d.parsers.mdl.FBitmap"/>
+    <classEntry path="me.feng3d.parsers.mdl.BoneObject"/>
+    <classEntry path="me.feng3d.parsers.mdl.BoneRotation"/>
+    <classEntry path="me.feng3d.parsers.mdl.BoneTranslation"/>
+    <classEntry path="me.feng3d.parsers.mdl.Translation"/>
+    <classEntry path="me.feng3d.parsers.mdl.WarcraftModel"/>
+    <classEntry path="me.feng3d.parsers.mdl.GeosetAnim"/>
+    <classEntry path="me.feng3d.utils.War3Utils"/>
+  </includeClasses>
   <includeResources/>
   <namespaceManifests/>
 </flexLibProperties>
