@@ -1,25 +1,33 @@
 package
 {
-	import com.bit101.components.CheckBox;
-	import com.bit101.components.HBox;
 	import com.bit101.components.Style;
-	import com.bit101.components.VBox;
-	
+
 	import flash.display.Sprite;
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
-	import flash.events.MouseEvent;
+
+	import me.feng.load.Load;
+	import me.feng.task.Task;
+
+	import modules.BlpViewer;
+	import modules.ModelTransitionView;
+	import modules.PbMeshView;
+	import modules.War3modelParse;
+
+	import uk.co.soulwire.gui.SimpleGUI;
+
+	import view.ViewCenter;
 
 	/**
 	 *
 	 * @author feng 2015-11-9
 	 */
-	[SWF(width = "640", height = "362", frameRate = "60", backgroundColor = "#999999")]
+	[SWF(width = "1024", height = "768", frameRate = "60", backgroundColor = "#999999")]
 	public class WarcraftTool extends Sprite
 	{
-		private var _blpView:BlpViewer;
-		private var leftView:VBox;
-		private var rightView:VBox;
+		public var viewCenter:ViewCenter;
+
+		private var gui:SimpleGUI;
 
 		public function WarcraftTool()
 		{
@@ -33,50 +41,54 @@ package
 		private function init():void
 		{
 			initStyles();
-			
-			var hbox:HBox = new HBox(this);
-			
-			leftView = new VBox(hbox);
 
-			new CheckBox(leftView, 0, 0, "显示blp贴图", onShowBlp);
+			Task.init();
+			Load.init();
 
-			rightView = new VBox(hbox);
+			MyCC.initFlashConsole(this);
+
+			viewCenter = new ViewCenter(this);
+
+			initView();
 		}
 
-		private function onShowBlp(event:MouseEvent):void
+		private function initView():void
 		{
-			var b:CheckBox = event.currentTarget as CheckBox;
+			gui = new SimpleGUI(this, "");
 
-			if (b.selected)
-			{
-				rightView.addChild(blpView);
-			}
-			else
-			{
-				rightView.removeChild(blpView);
-			}
+			viewCenter.viewClsDic["showBlpView"] = BlpViewer;
+			viewCenter.viewClsDic["showMdlView"] = War3modelParse;
+			viewCenter.viewClsDic["modelTransitionView"] = ModelTransitionView;
+			viewCenter.viewClsDic["pbMeshView"] = PbMeshView;
+
+			gui.addColumn("工具");
+			gui.addToggle("viewCenter." + "showBlpView", {label: "显示blp贴图"});
+			gui.addToggle("viewCenter." + "showMdlView", {label: "显示mdl模型动画"});
+			gui.addToggle("viewCenter." + "modelTransitionView", {label: "模型转换"});
+			gui.addToggle("viewCenter." + "pbMeshView", {label: "显示pbMesh"});
+
+			gui.show();
 		}
 
-		private function get blpView():BlpViewer
-		{
-			return _blpView ||= new BlpViewer();
-		}
-		
 		//	----------------------------------------------------------------
 		//	PRIVATE METHODS
 		//	----------------------------------------------------------------
-		private function initStyles() : void
+		private function initStyles():void
 		{
+			Style.setStyle(Style.DARK);
+
 			Style.embedFonts = false;
 			Style.fontSize = 12;
+
 			Style.PANEL = 0x333333;
 			Style.BACKGROUND = 0x333333;
 			Style.INPUT_TEXT = 0xEEEEEE;
 			Style.LABEL_TEXT = 0xEEEEEE;
 			Style.BUTTON_FACE = 0x555555;
 			Style.DROPSHADOW = 0x000000;
+			Style.LIST_ALTERNATE = 0x333333;
 		}
 	}
-	
+
 }
 

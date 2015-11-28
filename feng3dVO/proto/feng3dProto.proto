@@ -1,0 +1,93 @@
+package me.feng3d.vo;
+
+//网格数据
+message MeshVO
+{
+	//<li>网格数据
+	optional GeometryVO geometry = 1;
+	//<li>材质数据
+	optional MaterialVO material = 2;
+	//<li>动画数据
+	optional AnimatorVO animator = 3;
+	//<li>子网格列表
+	repeated MeshVO children = 4;
+}
+
+//几何体数据
+message GeometryVO
+{
+	//<li>子几何体列表
+	repeated SubGeometryVO subGeometries = 1;
+}
+
+//材质数据
+message MaterialVO
+{
+	//<li>贴图路径
+	required string imgPath = 1;
+}
+
+//子几何体数据
+message SubGeometryVO
+{
+	//<li>顶点索引数据
+	repeated int32 indices = 1;
+	//<li>顶点坐标数据
+	repeated float positions = 2;
+	//<li>顶点uv数据
+	repeated float uvs = 3;
+}
+
+//动画类型
+enum AnimatorVOType
+{
+	//<li>骨骼动画
+	SKELETON_ANIMATOR = 0;
+	//<li>顶点动画
+	VERTEX_ANIMATOR = 1;
+}
+
+//动画数据
+message AnimatorVO
+{
+	//<li>动画类型
+	required AnimatorVOType type = 1;
+	//<li>动画数据
+	required bytes animatorData = 2;
+}
+
+//骨骼动画
+message SkeletonAnimatorVO
+{
+	//<li>骨骼数据
+	required SkeletonVO skeleton = 1;
+	//<li>动画集合数据
+	required SkeletonAnimationSetVO skeletonAnimationSet = 2;
+}
+
+//骨骼数据
+message SkeletonVO
+{
+	//<li>骨骼关节数据列表
+	repeated SkeletonJointVO joints = 1;
+}
+
+//动画集合数据
+message SkeletonAnimationSetVO
+{
+	//<li>每个顶点关联关节的数量
+	required uint32 jointsPerVertex = 1;
+	//<li>关节数量
+	required uint32 numJoints = 2;
+}
+
+//骨骼关键数据
+message SkeletonJointVO
+{
+	//<li>父关节索引 （-1说明本身是总父节点，这个序号其实就是行号了，譬如上面”origin“节点的序号就是0，无父节点； "body"节点序号是1，父节点序号是0，也就是说父节点是”origin“）
+	required int32 parentIndex = 1;
+	//<li>关节名字
+	required string name = 2;
+	//<li>bind-pose姿态下节点的位置（位移）和旋转
+	repeated float inverseBindPose = 3;
+}

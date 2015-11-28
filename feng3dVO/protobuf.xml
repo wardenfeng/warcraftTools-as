@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="protobuf_feng3d"
+		 default="protobuf"
+		 basedir=".">
+	<property file="build.properties"/>
+
+	<target name="protobuf"
+			depends="clean">
+		<exec executable="${basedir}/compiler/protoc">
+			<arg line="-I=${basedir}/proto"/>
+			<arg line="--plugin=protoc-gen-as3=${basedir}/compiler/protoc-gen-as3.bat"/>
+			<arg value="--as3_out=${basedir}/src"/>
+			<arg value="${basedir}/proto/${PROTOBUF_CFG}"/>
+		</exec>
+	</target>
+
+	<target name="clean">
+		<delete includeEmptyDirs="true">
+			<fileset dir="${PROTOBUF_OUTPUT}"
+					 includes="**/*">
+				<exclude name="${PROTOBUF_CFG}"/>
+			</fileset>
+		</delete>
+	</target>
+</project>
