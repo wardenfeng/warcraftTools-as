@@ -118,9 +118,25 @@ package data
 		 */
 		private static function toAnimator(animatorVO:AnimatorVO):IAnimator
 		{
-			if (animatorVO == null)
-				return null;
+			var animator:IAnimator = null;
+			try
+			{
+				animator = $toAnimator(animatorVO);
+			}
+			catch (error:Error)
+			{
+				trace(error.getStackTrace());
+			}
+			return animator;
+		}
 
+		/**
+		 * 转换为动画
+		 * @param animator
+		 * @return
+		 */
+		private static function $toAnimator(animatorVO:AnimatorVO):IAnimator
+		{
 			var animator:IAnimator;
 			switch (animatorVO.type)
 			{
@@ -144,11 +160,19 @@ package data
 		 */
 		private static function toSkeletonAnimator(skeletonAnimatorVO:SkeletonAnimatorVO):IAnimator
 		{
-			var animationSet:SkeletonAnimationSet = toSkeletonAnimationSet(skeletonAnimatorVO.skeletonAnimationSet);
-			var skeleton:Skeleton = toSkeleton(skeletonAnimatorVO.skeleton);
-			var forceCPU:Boolean = false;
+			var skeletonAnimator:SkeletonAnimator = null;
+			try
+			{
+				var animationSet:SkeletonAnimationSet = toSkeletonAnimationSet(skeletonAnimatorVO.skeletonAnimationSet);
+				var skeleton:Skeleton = toSkeleton(skeletonAnimatorVO.skeleton);
+				var forceCPU:Boolean = false;
 
-			var skeletonAnimator:SkeletonAnimator = new SkeletonAnimator(animationSet, skeleton, forceCPU);
+				skeletonAnimator = new SkeletonAnimator(animationSet, skeleton, forceCPU);
+			}
+			catch (error:Error)
+			{
+				trace(error.getStackTrace());
+			}
 			return skeletonAnimator;
 		}
 

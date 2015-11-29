@@ -120,7 +120,7 @@ package data
 		private static function getWarcraftModelJointsPerVertex(warcraftModel:WarcraftModel):uint
 		{
 			var jointsPerVertex:int = 0;
-			warcraftModel.geosets.forEach(function(geoset:Geoset, index:int, array:Array):void
+			warcraftModel.geosets.forEach(function(geoset:Geoset, ... args):void
 			{
 				jointsPerVertex = Math.max(jointsPerVertex, getGeosetJointsPerVertex(geoset));
 			});
@@ -135,7 +135,7 @@ package data
 		private static function getGeosetJointsPerVertex(geoset:Geoset):Number
 		{
 			var geosetJointsPerVertex:int = 0;
-			geoset.Groups.forEach(function(item:Vector.<int>, index:int, array:Array):void
+			geoset.Groups.forEach(function(item:Vector.<int>, ... args):void
 			{
 				geosetJointsPerVertex = Math.max(item.length);
 			});

@@ -6,8 +6,10 @@ package
 	import flash.display.StageAlign;
 	import flash.display.StageScaleMode;
 
+	import me.feng.debug.DebugCommon;
 	import me.feng.load.Load;
 	import me.feng.task.Task;
+	import me.feng3d.debug.Debug;
 
 	import modules.BlpViewer;
 	import modules.ModelTransitionView;
@@ -46,6 +48,9 @@ package
 			Load.init();
 
 			MyCC.initFlashConsole(this);
+			Debug.agalDebug = false;
+			DebugCommon.loggerFunc = null;
+
 
 			viewCenter = new ViewCenter(this);
 
