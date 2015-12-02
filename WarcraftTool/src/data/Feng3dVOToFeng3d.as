@@ -118,25 +118,9 @@ package data
 		 */
 		private static function toAnimator(animatorVO:AnimatorVO):IAnimator
 		{
-			var animator:IAnimator = null;
-			try
-			{
-				animator = $toAnimator(animatorVO);
-			}
-			catch (error:Error)
-			{
-				trace(error.getStackTrace());
-			}
-			return animator;
-		}
+			if (animatorVO == null)
+				return null;
 
-		/**
-		 * 转换为动画
-		 * @param animator
-		 * @return
-		 */
-		private static function $toAnimator(animatorVO:AnimatorVO):IAnimator
-		{
 			var animator:IAnimator;
 			switch (animatorVO.type)
 			{
@@ -191,8 +175,6 @@ package data
 				skeleton.joints.push(joint);
 
 			}
-
-			skeletonVO.joints.length
 
 			return skeleton;
 		}
