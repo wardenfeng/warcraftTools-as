@@ -35,11 +35,11 @@ package
 
 			var subG:SubGeometryVO = new SubGeometryVO();
 			subG.uvs = [1, 2.1, 2.5];
-			subG.vertices = [];
+			subG.indices = [];
 
 			for (var i:int = 0; i < index; i++)
 			{
-				subG.vertices.push(Math.random());
+				subG.positions.push(Math.random());
 			}
 
 			subG.writeTo(byteArray);
@@ -48,7 +48,7 @@ package
 			var subG1:SubGeometryVO = new SubGeometryVO();
 			subG1.mergeFrom(byteArray);
 
-			assert(test(subG.vertices, subG1.vertices));
+			assert(test(subG.uvs, subG1.uvs));
 		}
 
 		private function getLength(lens:Array):int
@@ -82,3 +82,5 @@ package
 		}
 	}
 }
+
+
